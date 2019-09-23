@@ -22,10 +22,8 @@ namespace up_array
         static int[] UpArray(int[] num)
         {
             int addone = 1;
-            long addLong = 1;
             int[] result;
             int value;
-            long largeNum;
             string number_string = string.Join("", num);
             WriteLine(number_string);
             bool containsNegative = num.Any(i => i < 0);
@@ -42,11 +40,7 @@ namespace up_array
             if (num.Length == 0 || containsNegative)
             {
                 result = null;
-            } else if (num.Length > 10) {
-                largeNum = long.Parse(number_string);
-                long total = largeNum + addLong;
-                result = Array.ConvertAll(total.ToString().ToArray(), x => (int)x - 48);
-            }
+            } 
             else
             {
                 int total = value + addone;

@@ -1,0 +1,8 @@
+bin/
+obj
+
+Debug/
+
+*.cache
+
+obj/Debug/netcore2.2/*
