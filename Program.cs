@@ -39,16 +39,10 @@ namespace up_array
                 value = Convert.ToInt32(remove);
                 int total = value + addone;
                 result = Array.ConvertAll(total.ToString().ToArray(), x => (int)x - 48);
-
             }
             else
             {
-                // value = Convert.ToInt32(remove);
-                // int total = value + addone;
                 result = Array.ConvertAll(remove.ToArray(), x => (int)x - 48);
-
-
-
             }
 
             foreach (int r in result)
