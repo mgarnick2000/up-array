@@ -26,25 +26,27 @@ namespace up_array
             int value;
             string number_string = string.Join("", num);
             WriteLine(number_string);
+            string remove = Regex.Replace(number_string, @"-(\d)", "");
+            WriteLine(remove);
             bool containsNegative = num.Any(i => i < 0);
-            if (containsNegative)
-            {
-                    string remove = Regex.Replace(number_string, @"-(\d)", "");
-                    value = Convert.ToInt32(remove);
-            }
-            else
-            {
-                value = Convert.ToInt32(number_string);
-            }
 
-            if (num.Length == 0 || containsNegative)
+            if (num.Length == 0)
             {
                 result = null;
-            } 
-            else
+            }
+            else if (num.Length < 15)
             {
+                value = Convert.ToInt32(remove);
                 int total = value + addone;
                 result = Array.ConvertAll(total.ToString().ToArray(), x => (int)x - 48);
+
+            }
+            else
+            {
+                // value = Convert.ToInt32(remove);
+                // int total = value + addone;
+                result = Array.ConvertAll(remove.ToArray(), x => (int)x - 48);
+
 
 
             }
