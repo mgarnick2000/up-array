@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using static System.Console;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Globalization;
 
@@ -25,24 +26,66 @@ namespace up_array
             int[] result;
             int value;
             string number_string = string.Join("", num);
-            WriteLine(number_string);
+            // WriteLine(number_string);
             string remove = Regex.Replace(number_string, @"-(\d)", "");
-            WriteLine(remove);
-            bool containsNegative = num.Any(i => i < 0);
+            // WriteLine(remove);
+            
+            // bool containsNegative = num.Any(i => i < 0);
+            bool zeroVal = remove.StartsWith("0");
+
+            if (zeroVal)
+            {
+                int last = remove.Length - 1;
+                char alt = remove[last];
+                int lastval = Convert.ToInt32(alt - 48) + addone;
+                char f = Convert.ToChar(lastval.ToString());
+                string str = remove.Replace(alt, f);
+                WriteLine(str);
+                List<int> convert = new List<int>();
+                for (int c = 0; c < str.Length; c++)
+                {
+
+                    convert.Add(str[c] - 48);
+                }
+                // int last = convert.Find(x => x == convert[convert.Count - 1]);
+                // int total = last + addone;
+                // WriteLine(total);
+                // int secondLast = convert.FindIndex(0, x => x == convert[convert.Count - 1]);
+                // convert.RemoveAt(secondLast);
+                // WriteLine(secondLast);
+                result = convert.ToArray();
+            }
+
+
 
             if (num.Length == 0)
             {
+                WriteLine("thIS HAPPENED");
                 result = null;
             }
-            else if (num.Length < 15)
+            else if (num.Length < 4) {
+                WriteLine("thIS HAPPENED");
+                value = Int32.Parse(number_string);
+                int total = value + addone;
+                result = Array.ConvertAll(total.ToString().ToArray(), x => (int)x - 48);
+            }
+            else if (num.Length < 15 && !zeroVal )
             {
+                WriteLine("thIS HAPPENED");
                 value = Convert.ToInt32(remove);
                 int total = value + addone;
                 result = Array.ConvertAll(total.ToString().ToArray(), x => (int)x - 48);
             }
             else
             {
-                result = Array.ConvertAll(remove.ToArray(), x => (int)x - 48);
+                int last = remove.Length - 1;
+                char alt = remove[last];
+                int lastval = Convert.ToInt32(alt - 48) + addone;
+                char f = Convert.ToChar(lastval.ToString());
+                string str = remove.Replace(alt, f);
+                WriteLine(str);
+                WriteLine("thIS HAPPENED");
+                result = Array.ConvertAll(str.ToArray(), x => (int)x - 48);
             }
 
             foreach (int r in result)
